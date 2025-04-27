@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name = "AllTests Suite">
+    <test name = "AllTests">
+        <groups>
+            <run>
+                <include name = "group-one"/>
+                <include name = "group-two"/>
+            </run>
+        </groups>
+        <classes>
+            <class name = "homework16.Groups.GroupsTest"/>
+        </classes>
+    </test>
+</suite>
