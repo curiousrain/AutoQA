@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name = "AllTests Suite">
+    <parameter name="email"  value="mailthree@mail.com"/>
+    <parameter name = "username" value="MailThree MailThree"/>
+    <test name = "AllTests">
+        <classes>
+            <class name = "homework16.Parameters.ParametersTest"/>
+        </classes>
+    </test>
+</suite>
