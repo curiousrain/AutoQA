@@ -38,8 +38,8 @@ public class DataProviderTest {
         };
     }
     @Test(dataProvider = "testData")
-    public static void parametersForLogin(String email, String username) {
-        LoginToCourse.login(driver, wait, email, "12345678");
+    public static void parametersForLogin(String username) {
+        LoginToCourse.login(driver, wait);
         wait.until(ExpectedConditions.textMatches(By.tagName("h1"), Pattern.compile(username)));
         String actualText = driver.findElement(By.tagName("h1")).getText();
 
