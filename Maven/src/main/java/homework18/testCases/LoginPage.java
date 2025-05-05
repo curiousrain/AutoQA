@@ -15,14 +15,15 @@ import java.time.Duration;
 import java.util.regex.Pattern;
 
 public class LoginPage {
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         PageFactory.initElements(driver, this);
     }
 
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     @FindBy (name = "email")
     private static WebElement email;
@@ -39,8 +40,7 @@ public class LoginPage {
     @FindBy(xpath = "/html/body/div/div/div/div/form/div/div[2]/div/span")
     private static WebElement passwordErrorMessage;
 
-    By h1 = By.tagName("h1");
-
+    private static final By h1 = By.tagName("h1");
     public LoginPage openLogInPage() {
         driver.get(Link.ANDERSENCOURSE_LOGIN.getLink());
         return this;
@@ -67,7 +67,7 @@ public class LoginPage {
 
     public LoginPage checkUsername(String username){
         wait.until(ExpectedConditions.textMatches(h1, Pattern.compile(username)));
-        String actualText = driver.findElement(By.tagName("h1")).getText();
+        String actualText = driver.findElement(h1).getText();
 
         Assert.assertEquals(actualText,username, "We expected text: " + actualText +
                 "\nequals " + actualText);
@@ -92,6 +92,15 @@ public class LoginPage {
         Assert.assertEquals(actualText, errorMessage, "We expected text: " + actualText +
                 "\nequals " + errorMessage);
 
+        return this;
+    }
+
+    public LoginPage checkH1(String expectedText) {
+        wait.until(ExpectedConditions.textMatches(h1, Pattern.compile(expectedText)));
+        String actualText = driver.findElement(h1).getText();
+
+        Assert.assertEquals(actualText,expectedText, "We expected text: " + actualText +
+                "\nequals " + expectedText);
         return this;
     }
 }
