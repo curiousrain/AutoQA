@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <suite name = "AllTests Suite">
-    <parameter name="email"  value="mailone@mail.com"/>
-    <parameter name = "username" value="MailOne MailOne"/>
+    <parameter name="email"  value="mailtwo@mail.com"/>
+    <parameter name = "username" value="MailTwo MailTwo"/>
     <test name = "AllTests">
         <classes>
             <class name = "homework16.Parameters.ParametersTestRefactor"/>

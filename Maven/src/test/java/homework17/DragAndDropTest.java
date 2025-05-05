@@ -14,7 +14,7 @@ import java.time.Duration;
 
 @Test
 public class DragAndDropTest {
-    public void selectOptions() {
+    public void DragAndDrop() {
         WebDriver driver = DriverSetUp.getDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         LoginToCourse.login(driver, wait);
