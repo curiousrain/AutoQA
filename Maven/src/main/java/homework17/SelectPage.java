@@ -1,5 +1,7 @@
 package homework17;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -38,6 +41,7 @@ public class SelectPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
     private final Actions actions;
+    protected Logger logger = LogManager.getLogger(this.getClass());
 
     public SelectPage chooseSelectPage() {
         waitForElement(AQA_Practice, wait);
@@ -55,19 +59,28 @@ public class SelectPage {
         By selectLocator = null;
 
         switch (option) {
-            case COUNTRY -> selectLocator = countrySelect;
-            case LANGUAGE -> selectLocator = languageSelect;
-            case TYPE -> selectLocator = typeSelect;
-            case MULTIPLE_SELECT -> selectLocator = multipleSelect;
+            case COUNTRY:
+                selectLocator = countrySelect;
+                break;
+            case LANGUAGE:
+                selectLocator = languageSelect;
+                break;
+            case TYPE:
+                selectLocator = typeSelect;
+                break;
+            case MULTIPLE_SELECT:
+                selectLocator = multipleSelect;
+                break;
         }
 
         Select select = new Select(wait.until(ExpectedConditions.visibilityOfElementLocated(selectLocator)));
         select.selectByVisibleText(value);
+        logger.info("Following options are selected " +value);
 
         return this;
     }
 
-    public SelectPage setCalendarField(CalendarField calendarField, LocalDate date){
+    public SelectPage setCalendarField(CalendarField calendarField, LocalDate date) {
         By selectLocator = null;
 
         switch (calendarField) {
@@ -76,13 +89,14 @@ public class SelectPage {
         }
 
         sendKeys(driver.findElement(selectLocator), date.format(dateFormat));
+        logger.info("Dates are selected");
 
         return this;
     }
 
-    public SelectPage pressButton(){
+    public SelectPage pressButton() {
         actions.moveToElement(driver.findElement(BUTTON)).click().build().perform();
-
+        logger.info("Button is pressed");
         return this;
     }
 
@@ -90,8 +104,8 @@ public class SelectPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(h2));
         String actualText = driver.findElement(h2).
                 getText();
-        Assert.assertEquals(actualText,expectedText,"We expected text: " + actualText + "\nequals " + expectedText);
-
+        Assert.assertEquals(actualText, expectedText, "We expected text: " + actualText + "\nequals " + expectedText);
+        logger.info("Courses are checked");
         return this;
     }
 
