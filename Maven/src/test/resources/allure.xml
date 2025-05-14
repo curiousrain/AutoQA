@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="AllTests Suite">
+    <test name="AllTests">
+        <classes>
+            <class name="homework16.DataProvider.DataProviderTestRefactor"/>
+            <class name="homework16.Parameters.ParametersTestRefactor"/>
+            <class name="homework17.DragAndDropTestRefactor"/>
+            <class name="homework17.IframeTestRefactor"/>
+            <class name="homework17.SelectPageTestRefactor"/>
+            <class name="homework18.testCasesHW14.LoginPageTest"/>
+            <class name="homework18.testCasesHW14.RegistrationPageTest"/>
+        </classes>
+    </test>
+</suite>

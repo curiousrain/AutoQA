@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.time.Duration;
 
@@ -24,6 +26,7 @@ public class DragAndDrop {
     private final WebDriver driver;
     private final WebDriverWait wait;
     private final Actions actions;
+    protected Logger logger = LogManager.getLogger(this.getClass());
 
     By AQA_Practice = By.xpath("//*[@id=\"root\"]/div/div[2]/div/main/div/section/div/div[2]/div[2]/div");
     By dragAndDrop = By.xpath("/html/body/div/div/div[2]/div/main/div/section/div/div[2]/div[2]/div[2]/div[2]");
@@ -50,6 +53,7 @@ public class DragAndDrop {
         actions.moveToElement(driver.findElement(dragAndDrop)).click().build().perform();
         wait.until(ExpectedConditions.visibilityOfElementLocated(manual));
         wait.until(ExpectedConditions.visibilityOfElementLocated(automation));
+        logger.info("The page is opened");
         return this;
     }
 
@@ -61,6 +65,7 @@ public class DragAndDrop {
                 .dragAndDrop(driver.findElement(auto2), driver.findElement(target_auto2))
                 .build()
                 .perform();
+        logger.info("The task is performed");
         return this;
     }
 
@@ -69,6 +74,7 @@ public class DragAndDrop {
         wait.until(ExpectedConditions.visibilityOfElementLocated(success_message));
         Assert.assertEquals(driver.findElement(success_message).getText(),"Congratulations! Let's test for the best!", "We expected text: " + driver.findElement(success_message).getText() +
                 "\nequals Congratulations! Let's test for the best!");
+        logger.info("Success message is checked");
         return this;
     }
 

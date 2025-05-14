@@ -1,5 +1,7 @@
 package homework18.testCases;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +25,7 @@ public class RegistrationPage {
 
     private static WebDriver driver;
     private static WebDriverWait wait;
+    protected Logger logger = LogManager.getLogger(this.getClass());
 
     @FindBy(name = "firstName")
     private static WebElement firstName;
@@ -54,35 +57,41 @@ public class RegistrationPage {
 
     public RegistrationPage openRegistrationPage() {
         driver.get(Link.ANDERSENCOURSE_REGISTRATION.getLink());
+        logger.info("Page is opened");
         return this;
     }
     public RegistrationPage fillFirstName(String value) {
         sendKeys(firstName, value);
+        logger.info("First name is filled");
         return this;
     }
     public RegistrationPage fillLastName(String value) {
         sendKeys(lastName, value);
+        logger.info("Last name is filled");
         return this;
     }
 
     public RegistrationPage selectDateOfBirth(String value) {
         sendKeys(dateOfBirth, value);
         sendKeys(dateOfBirth, Keys.ENTER);
-
+        logger.info("Date of birth is selected");
         return this;
     }
 
     public RegistrationPage fillEmail(String value) {
         sendKeys(email, value);
+        logger.info("Email is filled");
         return this;
     }
 
     public RegistrationPage fillPassword(String value){
         sendKeys(password, value);
+        logger.info("Password is filled");
         return this;
     }
     public RegistrationPage fillConfirmPassword(String value){
         sendKeys(passwordConfirmation, value);
+        logger.info("Confirm Password is filled");
         return this;
     }
 
@@ -96,10 +105,12 @@ public class RegistrationPage {
 
     public RegistrationPage clickForButtonToBeClickable()  {
         wait.until(ExpectedConditions.elementToBeClickable(button));
+        logger.info("Button is clickable");
         return this;
     }
     public RegistrationPage clickOnButton()  {
         wait.until(ExpectedConditions.visibilityOf(button)).click();
+        logger.info("Button is clicked");
         return this;
     }
     public RegistrationPage checkh1(String title){
@@ -108,7 +119,7 @@ public class RegistrationPage {
 
         Assert.assertEquals(actualText,title, "We expected text: " + actualText +
                 "\nequals " + actualText);
-
+        logger.info("User is registered");
         return this;
     }
 
@@ -118,7 +129,7 @@ public class RegistrationPage {
 
         Assert.assertEquals(actualText, errorMessage, "We expected text: " + actualText +
                 "\nequals " + errorMessage);
-
+        logger.info("Error message for first name is checked");
         return this;
     }
 
@@ -128,7 +139,7 @@ public class RegistrationPage {
 
         Assert.assertEquals(actualText, errorMessage, "We expected text: " + actualText +
                 "\nequals " + errorMessage);
-
+        logger.info("Error message for last name is checked");
         return this;
     }
 
@@ -138,7 +149,7 @@ public class RegistrationPage {
 
         Assert.assertEquals(actualText, errorMessage, "We expected text: " + actualText +
                 "\nequals " + errorMessage);
-
+        logger.info("Error message for date of birth is checked");
         return this;
     }
 
@@ -150,7 +161,7 @@ public class RegistrationPage {
 
         Assert.assertEquals(actualText, errorMessage, "We expected text: " + actualText +
                 "\nequals " + errorMessage);
-
+        logger.info("Error message for email is checked");
         return this;
     }
 
@@ -160,7 +171,7 @@ public class RegistrationPage {
 
         Assert.assertEquals(actualText, errorMessage, "We expected text: " + actualText +
                 "\nequals " + errorMessage);
-
+        logger.info("Error message for password is checked");
         return this;
     }
 
@@ -170,7 +181,7 @@ public class RegistrationPage {
 
         Assert.assertEquals(actualText, errorMessage, "We expected text: " + actualText +
                 "\nequals " + errorMessage);
-
+        logger.info("Error message for password conformation is checked");
         return this;
     }
 }

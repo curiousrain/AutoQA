@@ -1,9 +1,14 @@
 package homework16.Groups;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class GroupsTest {
+    @Description("Checking two groups of tests")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(groups = {"group-one"})
     public void one() {
         Assert.assertTrue(true);

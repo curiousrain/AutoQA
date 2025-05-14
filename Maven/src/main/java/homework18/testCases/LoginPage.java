@@ -1,5 +1,7 @@
 package homework18.testCases;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,6 +26,7 @@ public class LoginPage {
 
     private final WebDriver driver;
     private final WebDriverWait wait;
+    protected Logger logger = LogManager.getLogger(this.getClass());
 
     @FindBy (name = "email")
     private static WebElement email;
@@ -43,16 +46,19 @@ public class LoginPage {
     private static final By h1 = By.tagName("h1");
     public LoginPage openLogInPage() {
         driver.get(Link.ANDERSENCOURSE_LOGIN.getLink());
+        logger.info("Page is opened");
         return this;
     }
 
     public LoginPage fillEmail(String value) {
         sendKeys(email, value);
+        logger.info("Email is filled");
         return this;
     }
 
     public LoginPage fillPassword(String value){
         sendKeys(password, value);
+        logger.info("Password is filled");
         return this;
     }
 
@@ -62,6 +68,7 @@ public class LoginPage {
 
     public LoginPage clickOnButton() {
         wait.until(ExpectedConditions.visibilityOf(button)).click();
+        logger.info("Button is clicked");
         return this;
     }
 
@@ -71,6 +78,7 @@ public class LoginPage {
 
         Assert.assertEquals(actualText,username, "We expected text: " + actualText +
                 "\nequals " + actualText);
+        logger.info("Username is checked");
 
         return this;
     }
@@ -81,7 +89,7 @@ public class LoginPage {
 
         Assert.assertEquals(actualText, errorMessage, "We expected text: " + actualText +
                 "\nequals " + errorMessage);
-
+        logger.info("Error message for email is checked");
         return this;
     }
 
@@ -91,7 +99,7 @@ public class LoginPage {
 
         Assert.assertEquals(actualText, errorMessage, "We expected text: " + actualText +
                 "\nequals " + errorMessage);
-
+        logger.info("Error message for password is checked");
         return this;
     }
 
@@ -101,6 +109,7 @@ public class LoginPage {
 
         Assert.assertEquals(actualText,expectedText, "We expected text: " + actualText +
                 "\nequals " + expectedText);
+        logger.info("Username is same as it was");
         return this;
     }
 }
