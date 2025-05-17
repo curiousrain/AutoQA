@@ -7,7 +7,7 @@ import io.cucumber.testng.CucumberOptions;
                 "html:target/cucumber-report/cucumber.html",
                 "json:target/cucumber-report/cucumber.json"},
         features = {"src/test/resources/feature"},
-        glue = {"lesson20/step_definition"}
+        glue = {"homework20.step_definition"}
 )
 public class loginPageRunner extends AbstractTestNGCucumberTests{
 
